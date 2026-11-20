@@ -1,0 +1,395 @@
+# 🌐 ApnaCircle – Location-Based Friendship, Community & Help Network
+
+> **Your People. Your Cities. Your Circle.**  
+> *Don't Just Search a Place. Find a Person Who Can Help.*
+
+ApnaCircle is a full-stack web application that connects people across different cities through friendships, communities, and location-based assistance.
+
+Whether someone is travelling, relocating, or exploring a new city, ApnaCircle helps them discover familiar connections, find trusted local helpers, and build meaningful communities.
+
+The platform combines location-based discovery, intelligent helper matching, real-time messaging, reputation-based rewards, and community engagement into one unified ecosystem.
+
+---
+
+## ✨ Key Features
+
+### 1. 📍 Location-Based Discovery
+- Discover people based on their current city, hometown, college, and skills.
+- Interactive maps powered by **Leaflet and OpenStreetMap**.
+- Configurable search radius: 10 km, 25 km, and 50 km.
+- Live GPS-based location support.
+- Privacy-preserving coordinate jitter to protect user locations.
+
+### 2. 🤝 Complete Friendship System
+- Search and discover other users.
+- Send, accept, reject, and cancel friend requests.
+- Dedicated **My Friends** page.
+- Filter friends by:
+  - Current City
+  - Home City
+  - College
+  - Skills
+  - Help Categories
+- Discover friends of friends through second-degree connections.
+
+### 3. 🧠 Smart Help Request & Matching Engine
+
+Users can create help requests in the following categories:
+
+- Vehicle Help
+- Travel Help
+- Local Guidance
+- Technology Help
+- Education Help
+- Accommodation Guidance
+- Emergency Assistance
+
+**Intelligent Matching Algorithm**
+
+ApnaCircle ranks potential helpers using a weighted compatibility scoring system.
+
+**Match Score Formula:**
+
+\[
+\begin{aligned}
+Score ={}& 0.35(Skill) + 0.25(Language)\\
+&+ 0.20(Distance) + 0.10(Trust)\\
+&+ 0.10(Availability)
+\end{aligned}
+\]
+
+The matching engine provides:
+- Compatibility scores.
+- Detailed scoring breakdowns.
+- System-generated match explanations.
+- Ranked helper recommendations.
+
+### 4. 💬 Real-Time Chat & Messaging
+- Real-time one-to-one messaging using Socket.IO.
+- Online and offline presence indicators.
+- Live typing indicators.
+- Persistent message history.
+
+### 5. 🏆 Rewards & Reputation System
+- Earn reputation points after confirmed assistance completion.
+- Category-based reward allocation.
+- Immutable reward transaction ledger.
+- Duplicate reward prevention.
+- Five-level progression system:
+  - Level 1 – New Member
+  - Level 2 – Active Member
+  - Level 3 – Trusted Helper
+  - Level 4 – Community Leader
+  - Level 5 – Community Champion
+- Achievement badges and milestones.
+- National and city-wise leaderboards.
+
+### 6. ⭐ Verified Reviews & Trust Scores
+- Submit star ratings and written reviews after completed assistance.
+- Dynamically calculated trust scores.
+- Reputation based on verified ratings and completed assistance.
+
+### 7. 🏙️ City Communities
+- Join location-based community hubs.
+- Participate in city-specific discussions.
+- Create discussion posts and questions.
+- Interact with other community members.
+
+**Example Communities:**
+- Delhi NCR Circle
+- Jaipur Heritage
+- Tech Circle
+
+### 8. 🛡️ Admin Dashboard
+A dedicated, role-protected admin portal available at `/admin`.
+
+Features include:
+- Platform analytics and metrics.
+- User management.
+- Account suspension.
+- Report and content moderation.
+- Administrative controls.
+
+---
+
+## 🛠️ Technology Stack
+
+### Frontend
+
+| Technology | Purpose |
+|---|---|
+| React 18 | User interface |
+| Vite 6 | Development and build tooling |
+| Tailwind CSS 3 | Styling |
+| React Router DOM 6 | Client-side routing |
+| Axios | API communication |
+| Lucide React | Icons |
+| React Hot Toast | Notifications |
+| Recharts | Data visualization |
+| Leaflet & React-Leaflet | Interactive maps |
+| Socket.IO Client | Real-time communication |
+
+### Backend
+
+| Technology | Purpose |
+|---|---|
+| Node.js | Runtime environment |
+| Express 4 | Backend framework |
+| MongoDB | Database |
+| Mongoose 8 | Database modeling |
+| MongoDB Memory Server | Embedded database fallback |
+| JWT | Authentication |
+| Bcryptjs | Password hashing |
+| Socket.IO 4 | Real-time messaging |
+| Multer | File uploads |
+| Nodemailer | Email services |
+
+---
+
+## 🚀 Getting Started
+
+Follow these steps to run ApnaCircle locally.
+
+### Prerequisites
+
+Make sure you have installed:
+
+- Node.js v18 or higher (v24 supported)
+- npm v9 or higher
+- Git
+
+### 1. Clone the Repository
+
+```bash
+git clone <YOUR_REPOSITORY_URL>
+cd apnacircle
+```
+
+### 2. Install Dependencies
+
+**Backend:**
+
+```bash
+cd server
+npm install
+```
+
+**Frontend:**
+
+```bash
+cd ../client
+npm install
+```
+
+### 3. Configure Environment Variables
+
+The project comes preconfigured with `server/.env`.
+
+If you need to create a new environment file:
+
+```bash
+cp server/.env.example server/.env
+```
+
+Configure the following variables:
+
+```env
+PORT=5000
+CLIENT_URL=http://localhost:5173
+
+MONGODB_URI=mongodb://127.0.0.1:27017/apnacircle
+
+JWT_SECRET=your_secure_jwt_secret
+JWT_EXPIRES_IN=7d
+
+NODE_ENV=development
+DEV_OTP_CONSOLE=true
+```
+
+**Database Configuration:**
+
+ApnaCircle supports automatic fallback to an embedded MongoDB Memory Server if a local MongoDB instance is unavailable.
+
+This allows the application to run without manually setting up an external database.
+
+> **Note:** The embedded database is intended for development and demo purposes. Its data may not persist after restarting the server.
+
+### 4. Seed the Database
+
+Populate the database with sample users, friendships, help requests, and communities.
+
+```bash
+cd server
+npm run seed
+```
+
+### 5. Run the Application
+
+**Option A: Development Mode (Frontend + Backend)**
+
+Open two separate terminals.
+
+Terminal 1 – Backend:
+
+```bash
+cd server
+npm run dev
+```
+
+Terminal 2 – Frontend:
+
+```bash
+cd client
+npm run dev
+```
+
+Open your browser:
+
+```text
+http://localhost:5173
+```
+
+**Option B: Integrated Production Mode**
+
+Build the frontend:
+
+```bash
+cd client
+npm run build
+```
+
+Start the backend:
+
+```bash
+cd ../server
+npm start
+```
+
+Open:
+
+```text
+http://localhost:5000
+```
+
+The Express server serves the built React application from a single port.
+
+---
+
+## 🔑 Demo Login Credentials
+
+Use the following accounts to explore the application's features.
+
+| Role | Name | Email | Password |
+|---|---|---|---|
+| User A | Rahul Sharma | rahul@apnacircle.com | Password@123 |
+| User B | Priya Verma | priya@apnacircle.com | Password@123 |
+| User C | Aman Patel | aman@apnacircle.com | Password@123 |
+| User D | Sneha Kulkarni | sneha@apnacircle.com | Password@123 |
+| User E | Ananya Das | ananya@apnacircle.com | Password@123 |
+| Admin | ApnaCircle Admin | admin@apnacircle.com | Admin@123 |
+
+### Demo User Profiles
+
+| User | City | Specialization |
+|---|---|---|
+| Rahul Sharma | Delhi (Hometown: Jaipur) | DTU Alumni, Vehicle & Technology |
+| Priya Verma | Jaipur | MNIT Alumni, Heritage & Travel |
+| Aman Patel | Delhi | IIT Delhi Alumni, Vehicle Breakdown |
+| Sneha Kulkarni | Mumbai | UI/UX Design, Accommodation |
+| Ananya Das | Bangalore | IISc Alumni, Cloud Architecture |
+| ApnaCircle Admin | — | Platform Super Admin |
+
+**Quick Login:** The login page includes one-click demo login options for Rahul, Priya, and Admin.
+
+---
+
+## 🧪 Automated Testing
+
+ApnaCircle includes an automated acceptance test suite covering 12 core application workflows.
+
+Run the tests using:
+
+```bash
+cd server
+npm test
+```
+
+### Test Coverage
+
+| # | Test Scenario |
+|---|---|
+| 1 | User registration, password hashing, and OTP verification |
+| 2 | User discovery and friend request creation |
+| 3 | Friend request acceptance and reciprocal friendship |
+| 4 | My Friends filtering by current city |
+| 5 | Help request creation with category, coordinates, and urgency |
+| 6 | Smart Matching Engine compatibility scoring |
+| 7 | Assistance acceptance and In Progress transition |
+| 8 | Assistance completion and reward ledger issuance |
+| 9 | Duplicate reward prevention |
+| 10 | Review submission and trust score recalculation |
+| 11 | Admin moderation and user suspension |
+| 12 | Responsive design and component states |
+
+---
+
+## 📂 Project Documentation
+
+Detailed technical documentation is available in the project.
+
+| Document | Description |
+|---|---|
+| `docs/ARCHITECTURE.md` | System architecture and application structure |
+| `docs/API_DOCUMENTATION.md` | REST API and Socket.IO documentation |
+| `docs/ACCEPTANCE_TEST_REPORT.md` | Automated acceptance test results |
+
+---
+
+## 🔒 Security & Privacy
+
+ApnaCircle incorporates several security and privacy mechanisms:
+
+- JWT-based authentication.
+- Bcrypt password hashing.
+- Role-based access control.
+- Privacy-preserving location coordinates.
+- Protected administrative routes.
+- Duplicate reward transaction prevention.
+- Verified assistance-based reviews.
+
+**Important:** Replace development credentials and secrets before deploying to production. Configure secure database storage, HTTPS, proper OTP delivery, and production environment variables.
+
+---
+
+## 📌 Future Scope
+
+Potential areas for further development include:
+
+- Mobile application for Android and iOS.
+- AI-powered personalized helper recommendations.
+- Enhanced identity and profile verification.
+- Multilingual community support.
+- Advanced location intelligence.
+- Push notifications.
+- Emergency contact and SOS workflows.
+- Expanded trust and fraud detection mechanisms.
+
+---
+
+## 📜 License
+
+This project is licensed under the **ISC License**.
+
+Copyright © ApnaCircle Team.
+
+---
+
+## ❤️ Our Vision
+
+We believe that no one should feel like a stranger in a new city.
+
+ApnaCircle aims to transform cities into connected communities where people can find friends, receive trusted assistance, share knowledge, and help one another.
+
+**Your People. Your Cities. Your Circle.**
+
+🌍 **ApnaCircle – Making Every City Feel Like Home.**

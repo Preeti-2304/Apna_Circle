@@ -1,0 +1,23 @@
+{
+  "name": "apnacircle",
+  "version": "1.0.0",
+  "description": "ApnaCircle – Location-Based Friendship, Community & Help Network",
+  "scripts": {
+    "install:all": "npm install && cd server && npm install && cd ../client && npm install",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "seed": "cd server && npm run seed",
+    "test": "cd server && npm run test",
+    "build:client": "cd client && npm run build"
+  },
+  "keywords": [
+    "apnacircle",
+    "social-network",
+    "location-based",
+    "community",
+    "help-network",
+    "friendship"
+  ],
+  "author": "ApnaCircle Team",
+  "license": "ISC"
+}
